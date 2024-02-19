@@ -1,4 +1,4 @@
-def is_bulky(width: int, hegiht: int, length: int):
+def is_bulky(width: int, height: int, length: int):
     """
     Returns whether a package is bulky (its volume is greater than or equal to
     10 ^ 6 cubic centimeters), or where one dimension is greater than or equal
@@ -13,7 +13,9 @@ def is_bulky(width: int, hegiht: int, length: int):
     :returns: The input package is bulky.
     :rtype: boolean
     """
-    pass
+    return (width >= 150 or height >= 150 or length >= 150) or (
+        width * height * length >= 1000000
+    )
 
 
 def is_heavy(mass: int):
@@ -25,7 +27,7 @@ def is_heavy(mass: int):
     :returns: The input package is heavy.
     :rtype: boolean
     """
-    pass
+    return mass >= 20
 
 
 def sort(width: int, height: int, length: int, mass: int):
@@ -65,3 +67,10 @@ def sort(width: int, height: int, length: int, mass: int):
         raise ValueError("Parameter mass must be an integer")
     if mass <= 0:
         raise ValueError("Parameter mass must be a positive value")
+
+    if is_bulky(width, height, length) and is_heavy(mass):
+        return "REJECTED"
+    elif is_bulky(width, height, length) or is_heavy(mass):
+        return "SPECIAL"
+    else:
+        return "STANDARD"
