@@ -15,6 +15,7 @@ def is_bulky(width: int, hegiht: int, length: int):
     """
     pass
 
+
 def is_heavy(mass: int):
     """
     Categorizes packages as heavy (its mass is greater than or equal to 20 kg).
@@ -25,6 +26,7 @@ def is_heavy(mass: int):
     :rtype: boolean
     """
     pass
+
 
 def sort(width: int, height: int, length: int, mass: int):
     """
@@ -42,5 +44,24 @@ def sort(width: int, height: int, length: int, mass: int):
     :rtype: "STANDARD" or "SPECIAL" or "REJECTED"
     :raises ValueError: If any input is not a positive integer.
     """
-    # Check whether the input values are non-negative integers, and raise if
-    # not.
+    # Check whether the input values are non-negative integers, and raise
+    # ValueError if not.
+    if not isinstance(width, int):
+        raise ValueError("Parameter width must be an integer")
+    if width <= 0:
+        raise ValueError("Parameter width must be a positive value")
+
+    if not isinstance(height, int):
+        raise ValueError("Parameter height must be an integer")
+    if height <= 0:
+        raise ValueError("Parameter height must be a positive value")
+
+    if not isinstance(length, int):
+        raise ValueError("Parameter length must be an integer")
+    if length <= 0:
+        raise ValueError("Parameter length must be a positive value")
+
+    if not isinstance(mass, int):
+        raise ValueError("Parameter mass must be an integer")
+    if mass <= 0:
+        raise ValueError("Parameter mass must be a positive value")
