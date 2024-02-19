@@ -26,8 +26,15 @@ class TestCheckSortingCriteria(unittest.TestCase):
     def test_standard(self):
         self.assertEqual(sort(1, 1, 1, 1), "STANDARD")
 
-    def test_special(self):
+    def test_special_if_heavy(self):
         self.assertEqual(sort(1, 1, 1, 30), "SPECIAL")
+
+    def test_special_if_bulky(self):
+        self.assertEqual(sort(160, 1, 1, 1), "SPECIAL")
+        self.assertEqual(sort(1, 160, 1, 1), "SPECIAL")
+        self.assertEqual(sort(1, 1, 160, 1), "SPECIAL")
+        self.assertEqual(sort(100, 100, 100, 1), "SPECIAL")
 
     def test_rejected(self):
         self.assertEqual(sort(160, 1, 1, 30), "REJECTED")
+        self.assertEqual(sort(100, 100, 100, 30), "REJECTED")
